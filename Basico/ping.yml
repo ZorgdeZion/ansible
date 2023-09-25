@@ -1,0 +1,7 @@
+---
+
+- name: 'Teste de ping'
+  host: #nome do host ou do grupo de hosts
+  tasks:
+    - name: 'Pingar o host'
+      ping:
