@@ -1,0 +1,37 @@
+---
+- name: Criar uma máquina Debian no servidor ESXi
+  hosts: tec
+  gather_facts: no
+  tasks:
+    - name: Criar a máquina virtual
+      community.vmware.vmware_vm_guest:
+        hostname: 172.16.56.82
+        username: root
+        password: Senai@134
+        cluster_name: Cluster
+        datacenter_name: Esxi
+        folder: /vmfs/volumes/datastore1/
+        name: debianteste
+        state: poweredon
+        template: NOME_DO_TEMPLATE
+        hardware:
+          memory_mb: 1024  # 1GB de RAM
+          num_cpus: 1      # 1 CPU
+        disk:
+          - size_gb: 20     # Tamanho do disco em GB
+            datastore: datastore1
+        networks:
+          - name: NOME_DA_REDE
+
+    - name: Configurar o CD/DVD drive para a imagem ISO
+      community.vmware.vmware_guest_cdrom:
+        hostname: 172.16.56.82
+        username: root
+        password: Senai@134
+        cluster_name: Cluster
+        datacenter_name: Esxi
+        folder: /vmfs/volumes/datastore1/
+        name: debian_teste
+        state: present
+        iso_path: /vmfs/volumes/datastore1/debian-classe-file1.iso  
+        start_connected: yes
