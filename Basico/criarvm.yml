@@ -1,0 +1,14 @@
+---
+tasks:
+- name: Criar VM
+  vmware_guest:
+    hostname: 172.16.56.82
+    username: root
+    password: Senai@134
+    validate_certs: False
+    name: debian
+    datacenter: Datacenter
+    datastore: datastore1
+    folder: /vmfs/volumes/datastore1/
+    state: poweredon
+    wait_for_ip_address: no
