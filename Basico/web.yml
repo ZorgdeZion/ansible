@@ -1,0 +1,45 @@
+---
+- name: 'Configurar servidor Apache para hospedar um site'
+  hosts: tec
+  become: yes 
+  tasks:
+    - name: Atualizar lista de pacotes
+      apt:
+        update_cache: yes
+
+    - name: Instalar o Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Habilitar o módulo de Apache para sites virtuais
+      command: a2enmod vhost_alias
+
+    - name: Criar o diretório do site
+      file:
+        path: /var/www/site
+        state: directory
+        owner: www-data
+        group: www-data
+
+    - name: Criar arquivo HTML para o site
+      template:
+        src: index.html
+        dest: /var/www/site/index.html
+        owner: www-data
+        group: www-data
+
+    - name: Configurar o VirtualHost do Apache
+      template:
+        src: site.conf 
+        dest: /etc/apache2/sites-available/site.conf
+        owner: root
+        group: root
+
+    - name: Ativar o site
+      command: a2ensite seu_site
+
+    - name: Reiniciar o Apache
+      service:
+        name: apache2
+        state: restarted
