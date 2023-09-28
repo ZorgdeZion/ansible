@@ -22,7 +22,8 @@
       become: yes
 
     - name: 'reiniciar o apache2'
-      notify: restart apache2
+      ansible.builtin.command:
+        notify: restart apache2
 
 
   handlers:
