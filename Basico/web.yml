@@ -20,3 +20,7 @@
         state: touch
         mode: '755'
       become: yes
+
+  handlers:
+    - name: 'restart apache2'
+      service: name=apache2 state=restarted
