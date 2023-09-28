@@ -31,7 +31,7 @@
     
     - name: 'copia dependencias do site'
       copy:
-        src: {{'piolhodecobra-cke.webp','style.css'}}
+        src: ['piolhodecobra-cke.webp','style.css']
         dest: '/var/www/html/'
       notify:
         - restart apache2
