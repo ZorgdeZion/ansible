@@ -21,6 +21,10 @@
         mode: '755'
       become: yes
 
+    - name: 'reiniciar o apache2'
+      notify: restart apache2
+
+
   handlers:
     - name: 'restart apache2'
       service: 
