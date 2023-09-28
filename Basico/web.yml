@@ -6,3 +6,9 @@
         name: apache2
         state: latest     
       become: yes
+    
+    - name: 'Criar o diretório do site'
+      ansible.builtin.file:
+        path: /var/www/site
+        state: directory
+        mode: '755'
