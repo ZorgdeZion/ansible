@@ -21,13 +21,16 @@
         mode: '755'
       become: yes
 
-    - name: 'reiniciar o apache2'
-      ansible.builtin.command:
-        notify: restart apache2
-
+    - name: 'Copia arquivo do site'
+      copy:
+        src: 'index.html'
+        dest: '/var/www/index.html'
+      notify:
+        - restart apache2
 
   handlers:
     - name: 'restart apache2'
       service: 
         name: apache2
         state: restarted
+      become: yes
