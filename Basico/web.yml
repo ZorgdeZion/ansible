@@ -13,3 +13,10 @@
         state: directory
         mode: '755'
       become: yes
+
+    - name: 'Cria arquivo html'
+      ansible.builtin.file:
+        path: /var/www/site/index.html
+        state: touch
+        mode: '755'
+      become: yes
