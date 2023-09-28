@@ -29,14 +29,21 @@
         - restart apache2
       become: yes
     
-    - name: 'copia dependencias do site'
+    - name: 'copia imagem do site'
       copy:
-        src: ['piolhodecobra-cke.webp','style.css']
-        dest: '/var/www/html/'
+        src: 'piolhodecobra-cke.webp'
+        dest: '/var/www/html/piolhodecobra-cke.webp'
       notify:
         - restart apache2
       become: yes
 
+    - name: 'copia css do site'
+      copy:
+        src: style.css
+        dest: '/var/www/html/style.css'
+      notify:
+        - restart apache2
+      become: yes
 
   handlers:
     - name: 'restart apache2'
