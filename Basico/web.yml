@@ -1,8 +1,8 @@
 ---
 - hosts: tec
   tasks:
+  become: yes
     - name: 'Instala o apache'
       apt:
         name: apache2
         state: latest
-      become: yes
