@@ -24,11 +24,20 @@
     - name: 'Copia arquivo do site'
       copy:
         src: 'index.html'
-        dest: '/var/www/index.html'
+        dest: '/var/www/html/index.html'
       notify:
         - restart apache2
       become: yes
-      
+    
+    - name: 'copia dependencias do site'
+      copy:
+        src: 'piolhodecobra-cke.webp' 'style.css'
+        dest: '/var/www/html/'
+      notify:
+        - restart apache2
+      become: yes
+
+
   handlers:
     - name: 'restart apache2'
       service: 
