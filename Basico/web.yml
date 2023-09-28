@@ -19,6 +19,8 @@
         path: /var/www/site/index.html
         state: touch
         mode: '755'
+        notify:
+          - restart apache2
       become: yes
 
   handlers:
