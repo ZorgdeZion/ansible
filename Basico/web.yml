@@ -19,10 +19,10 @@
         path: /var/www/site/index.html
         state: touch
         mode: '755'
-        notify:
-          - restart apache2
       become: yes
 
   handlers:
     - name: 'restart apache2'
-      service: name=apache2 state=restarted
+      service: 
+        name: apache2
+        state: restarted
